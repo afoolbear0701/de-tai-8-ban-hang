@@ -95,5 +95,5 @@ Cấu trúc tài liệu gồm 4 phần: Phần 1 giới thiệu mục đích và
 ## 4. Appendices (Phụ lục)
 - **Sơ đồ Use Case (Use Case Diagram):** 
 - **Sơ đồ Quan hệ Thực thể (ERD - Entity Relationship Diagram):** 
-- **Sơ đồ Tuần tự (Sequence Diagram):** 
+- **Sơ đồ Tuần tự (Sequence Diagram):**
 - **Sơ đồ hoạt động (Activity Diagram - Luồng thêm khách hàng):** 
