@@ -65,10 +65,11 @@ erDiagram
         int quantity
         decimal unit_price
     }
+```
 
 ## 3. Sơ đồ Lớp (Class Diagram)
 
-
+```mermaid
 classDiagram
     class Product {
         -int productId
@@ -100,3 +101,19 @@ classDiagram
 
     Product "1" --> "0..*" InventoryLog : ghi nhận lịch sử
     BarcodeService ..> Product : tra cứu mã vạch/QR
+```
+
+## 4. Quy tắc nghiệp vụ cốt lõi của Module Kho
+1. **Cảnh báo hàng sắp hết / hết hàng:** Khi `stock_quantity = 0` → trạng thái `OUT_OF_STOCK` (Hết hàng); khi `0 < stock_quantity <= min_stock_level` → trạng thái `LOW_STOCK` (Sắp hết) và hiển thị trong danh sách cảnh báo.
+2. **Nhận diện Barcode/QR:** Tìm chính xác theo `barcode` (UNIQUE). Nếu mã không tồn tại hoặc `stock_quantity <= 0` thì từ chối thêm vào giỏ và báo lỗi rõ ràng.
+3. **Kiểm tra tồn & Cập nhật tồn mới:** Trước khi chốt đơn/thanh toán, kiểm tra đủ số lượng tồn; sau khi thanh toán thành công, trừ tồn kho bằng transaction, ghi log `EXPORT` và trả về `new_stock` (tồn kho mới).
+
+## 5. Hướng dẫn cài đặt & chạy thử
+1. Chạy file `database.sql` trên MySQL để tạo CSDL `pos_system` và dữ liệu mẫu.
+2. Cập nhật thông tin kết nối MySQL (nếu cần) trong `server.js`.
+3. Chạy lệnh:
+   ```bash
+   npm install
+   npm start
+   ```
+4. Truy cập `http://localhost:3000`.
